@@ -1,0 +1,23 @@
+﻿Team Weebo: Nikita Borisov & Jackie Woo
+Due:2017-01-11
+
+
+TO DO:
+
+
+Jan 11 Wednesday: Create ArrayList initialization code and a main method that reads in user input (of a form that does not need to be parsed)
+Jan 12 Thursday- Jan 15 Sunday: Code flow chart visualizer
+Includes:
+* Jan 12 Thurs: An array of user inputs through the terminal that will determine the initialization, boolean, and update for the loop
+* Jan 13 Fri: Creating boolean visualization 
+* Jan 14 Sat: Creating body visualization (code within loop)
+* Jan 15 Sun: Creating loop visualization (arrow pointing back to boolean)
+Jan 16 Monday: Code visualization method that will print out the visualization in the terminal.
+Jan 17 Tuesday - 19 Thursday: Code a string parser that will read the java code line by line.
+By Jan 18, Parser should be able to determine:
+* Loop initialization
+* Boolean question 
+* Update for the loop
+And will place this information within an array to read into the flow chart visualizer.
+By Jan 19, Parser should be able to detect nested for loops
+Jan 20 Friday- Jan 23 Monday: Possibly code step by step visualization process that includes a dictionary like object for storing variable values and user interface that allows the user to go through the steps one by one OR if any other things from previous steps need to be fixed up, then we will fix them up.
