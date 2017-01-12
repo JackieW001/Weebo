@@ -26,25 +26,25 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
 *Having a user input the different parts of loops and nested loops
+*Parser is able to detect for loops and print out its parameters if within for brackets
+
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
 *Overcoming possible misallignment errors with the 2D array.
 *Creating an effective parser that can detect loops and wont get tripped up
+
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
+
 ||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -59,9 +59,13 @@ tales of wisdom gained...
 ==============================================================
 
 
-yyyy-mm-dd
+2017-01-11
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+Jackie :: Created Parser that read in file line by line and can detect for loops
+Nikita :: <Thing member did.>
+==============================================================
+2017-01-12
+--------------------------------------------------------------
+Jackie :: Parser is able to print out for loop parameters
+Nikita :: <Thing member did.>
 ==============================================================
