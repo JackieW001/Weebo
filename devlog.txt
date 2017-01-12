@@ -1,7 +1,7 @@
-<Weebo>
-<Jackie Woo>
-<Nikita Borisov>
-pd <01>
+Weebo
+Jackie Woo
+Nikita Borisov
+pd 01
 ---------------------
 <FlowchartMaker>
 
