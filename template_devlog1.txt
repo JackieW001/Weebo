@@ -6,6 +6,11 @@ pd <01>
 <FlowchartMaker>
 
 
+Suggested usage: 
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+
 devlog--
 Use keyboard shortcut to jump to end,
  replicate entry template,
@@ -21,13 +26,14 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2017-01-11: Program can now read in a file (in same directory) and detect the "for" keyword
-
+wow we so BOSS bc...
+*Having a user input the different parts of loops and nested loops
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2017-01-11: Reading in files from other directories, parsing thorugh files
-
-
+blah blah pesky bug...
+maybe some of these will move into the Obs.Ovrcm section...
+*Overcoming possible misallignment errors with the 2D array.
+*Creating an effective parser that can detect loops and wont get tripped up
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 wow! oo!...
@@ -38,7 +44,7 @@ we changed ___ to ___ bc...
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2017-01-11: Coding can take a lot longer time than you might expect
+tales of wisdom gained...
 ||||||||||||||||||||||||||||||||||||||||||
 
 
