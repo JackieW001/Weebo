@@ -14,20 +14,20 @@ public class run{
 	for(int i = 0; i < nestedAns; i += 1){
 	    System.out.println("any statements in body before nested loop" + i);
 	    ArrayList insertBody = new ArrayList();
-	    insertBody.add(nestedDeep + "@@statement@@" + Keyboard.readString());
+	    insertBody.add((nestedDeep + 1) + "@@statement@@" + Keyboard.readString());
 	    retAL.add(insertBody);
 	    retAL.add(inputAssembler(nestedDeep + 1));
 	}
 	if(nestedDeep == 0){
 	    System.out.println("any statments in the body?");
 	    ArrayList insertBody = new ArrayList();
-	    insertBody.add(nestedDeep + "@@statement@@" + Keyboard.readString());
+	    insertBody.add((nestedDeep+1) + "@@statement@@" + Keyboard.readString());
 	    retAL.add(insertBody);
         }
 	else{
 	    System.out.println("any additional statments in body?");
 	    ArrayList insertBody = new ArrayList();
-	    insertBody.add(nestedDeep + "@@statement@@" + Keyboard.readString());
+	    insertBody.add((nestedDeep+1) + "@@statement@@" + Keyboard.readString());
 	    retAL.add(insertBody);
         }
 	    
