@@ -3,7 +3,7 @@ public class Flowchart{
     private String[][] grid;
     //constructor
     public Flowchart(){
-        grid = new String[30][50];
+        grid = new String[60][70];
         for(int i = 0; i < grid.length; i+=1){
             for(int j = 0; j < grid[i].length; j+=1){
                 grid[i][j] = " ";
@@ -56,6 +56,20 @@ public class Flowchart{
     public void exitArrow(int r, int c){
         enterStringVert(r,c, "||||_|V"); // leaves a cell to insert word exit
         enterStringHorz(r+4,c,"exit");
+    }
+    //inserts an arrow pointing to the next loop(if there is one)
+    //r,c denotes the coordinates of the start of the arrow
+    //body of the top loop is needed in order to have the arrow pass its size
+    public void arrowToNextLoop(int r, int c, String body){
+        //counts how many lines are in the body
+        int linesInBody = 1; //starts with a min of one line of code
+        for(int i = 0; i < body.length() - 1; i += 1){
+            if(body.substring(i,i+1).equals("\n")){
+                linesInBody += 1;
+            }
+        } 
+        enterStringVert(r,c, repeater("|", linesInBody+5));
+        enterStringHorz(r+linesInBody+4,c+1, repeater("-", 9));
     }
     //figures out how far east the true arrow has to branch out..
     //..in order to not bumb into the update statment
@@ -142,10 +156,15 @@ public class Flowchart{
     
     //single non-nested loop assembler
     //r,c denotes the start of the init arrow (precond: c>=9) 
-    public void assembleLoop(int r, int c, String init, String bool, String update, String body){
+    public void assembleLoop(boolean exit, int r, int c, String init, String bool, String update, String body){
         initArrow(r,c,init);
         boolRhombus(r+4,c,bool);
-        exitArrow(r+5,c-9);
+        if(exit){
+            exitArrow(r+5,c-9);
+        }
+        else{
+            arrowToNextLoop(r+5,c-9,body);
+        }
         arrowToInnards(r+4,17+bool.length(),bool, update );
         insertBody(r+9,17+bool.length()+strechEast(bool,update), body);
         returnArrow(r+9,17+bool.length()+strechEast(bool,update)-3, bool,update);
@@ -165,7 +184,8 @@ public class Flowchart{
     //main for now
     public static void main(String args[]){
         Flowchart blarg = new Flowchart();
-        blarg.assembleLoop(0,9,"int i = 0", "i<20", "i+= 10000", "sop;\nSOSOPSOSPOSPOSP;\nwe the best;");
+        blarg.assembleLoop(false, 0,9,"int i = 0", "i<20", "i+= 10000", "sop;\nSOSOPSOSPOSPOSP;\nwe the best;");
+        blarg.assembleLoop(true, 13,9,"int j = 0", "j<java.lengt()", "i++", "sop;\nyesJackie;\na Statement that reqs;");
         blarg.printGrid();
         
     }
