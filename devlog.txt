@@ -12,15 +12,16 @@ OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Having a user input the different parts of loops and nested loops
 *Parser is able to detect for loops and print out its parameters if within for brackets
+*Overcoming possible misallignment errors with the 2D array!!!
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*Overcoming possible misallignment errors with the 2D array.
+*Creating a nested loop flowchart
 *Creating an effective parser that can detect loops and wont get tripped up
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+2D arrays are really fun
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
