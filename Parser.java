@@ -1,20 +1,19 @@
 
 import java.io.*;
 import cs1.Keyboard;
+import java.util.*;
 
-public class JavaVisualizer {
+public class Parser {
 
-	int openParenCount = 0;
-	int closeParenCount = 0;
-	int totalParenCount;
-	boolean foundFOR;
+	static String text = "";
+	static int curlyBraceCnt = 0;
+	static int parenCnt = 0;
 	
-	public void parseIt(){
-		
+	public void  parseIt(){
 		System.out.println("\nCurrently, this program will only output \n" +
 							"the for loop parameters. Please input a file \n" +
 							"in the same directory as this program.\n" +
-							"\n *** PLEASE ONLY INPUT MOO.JAVA FOR NOW ****");
+							"\n *** PLEASE ONLY INPUT Moo.java FOR NOW ****");
 		System.out.print("File to read in: " );
 		String inputFile = Keyboard.readString();
 		System.out.println("");
@@ -33,68 +32,103 @@ public class JavaVisualizer {
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
 			String strLine;
-			foundFOR = false;
-			
+				
 			//Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
-			
-				strLine = strLine.trim();
-				loopDetector("for", strLine);
-				printForParams(strLine);
-					
+				text += strLine.trim();
 			}// end while strLine = br.readLine
-
+			
 			//Close the input stream
 			br.close();
 		}
 		catch (IOException e){
 			System.out.println("Fail");
 		}
-	}
-	
-	public int countChar (String str, String character) {
-		int counter = 0;
-			for( int i = 0; i < str.length(); i++ ) {
-    			if( str.substring(i,i+1).equals( character ) ) {
-        		counter++;
-   			} 
+		
+		System.out.println("YOUR JAVA FILE: " + text);
+		System.out.println("");
+		ArrayList<Integer> indicies = indexDetector(text, "for");
+		//System.out.println(indicies.toString());
+		for (int i = 0; i < indicies.size(); i++){
+			loopSeparator(text, indicies.get(i));	
 		}
-		return counter;
-	} // end countChar
+	}// main
 	
-	public void printForParams( String strLine ){
-		String s = strLine;
-		if (foundFOR){
-			System.out.println ( strLine );
-			
-			String init = s.substring(s.indexOf("(")+1, s.indexOf(";"));
-		   	System.out.println("initialization: " + init.trim());
-		   	
-		   	s = s.substring(s.indexOf(";")+1);
-		   	String bool = s.substring(0, s.indexOf(";"));
-		   	System.out.println("boolean: " + bool.trim());
-		   	
-		   	s = s.substring(s.indexOf(";")+1);
-		   	String update = s.substring(0, s.indexOf(")"));
-		   	System.out.println("update: " + update.trim());
-		   	
-		   	System.out.println("");
-		   	
-			openParenCount += countChar(strLine, "(" );
-			closeParenCount += countChar(strLine, ")" );
-
-			if (openParenCount == closeParenCount) {
-				foundFOR = false;
+	/*
+		indexDetector (String, String): takes in string version of file and loop keyword (i.e. "for")
+		Finds all indicies in string where keyword starts
+		Returns indicies in an ArrayList
+	*/
+	public ArrayList<Integer> indexDetector (String s, String keyword){
+		ArrayList<Integer> indexList = new ArrayList<Integer>();
+		int fromIndex = 0;
+		while (s.indexOf(keyword,fromIndex) > -1){
+			int index = s.indexOf(keyword, fromIndex);
+			indexList.add(index);
+			fromIndex = s.indexOf(keyword,fromIndex)+keyword.length();
+		}
+		return indexList;
+	}// indexDetector
+	
+	/*
+		loopSeparator (String, int): takes in string version of file and index where loop starts
+		Prints out INITIALIZATION, BOOLEAN, UPDATE, BODY
+	*/
+	public void loopSeparator( String s, int index ){
+	 	s = s.substring(index);
+	 	System.out.println(s);
+	 	int openParen = 0;
+	 	int closeParen = 0;
+	 	String forParams = "";
+	 	
+	 	for (int i = 0; i < s.length() - 1; i++){
+	 		if (s.substring(i, i+1).equals("(")){
+	 			openParen += 1;
+	 		}
+	 		//System.out.println("OPEN: " + openParen);
+	 		if (s.substring(i, i+1).equals(")")){
+	 			closeParen += 1;
+	 		}
+	 		
+	 		//System.out.println("CLOSE: " + closeParen);
+		   if (openParen == closeParen && openParen != 0 && closeParen != 0){
+				forParams = s.substring(s.indexOf("("), i+1);
+				break;
 			}
-		}
-	} // end printForParams
-	
-	public void loopDetector( String keyword, String strLine ){
-		if ( strLine.indexOf(keyword) > -1 ){
-			foundFOR = true;
-		}	
+	 		
+	 		
+	 	}
+	 	
+		//PARAMS
+	 	String init = forParams.substring(1, forParams.indexOf(";"));
+	 	System.out.println("INIT: " + init);
+	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
+	 	
+	 	String bool = forParams.substring(0, forParams.indexOf(";"));
+	 	System.out.println("BOOLEAN: " + bool);
+	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
+	 	
+	 	String update = forParams.substring(0,forParams.length()-1);
+	 	System.out.println("UPDATE: " + update);
+	 	
+	 	//BODY
+	 	int openCurly = 0;
+	 	int closeCurly = 0;
+	 	String forBody = "";
+	 	for (int i = 0; i < s.length() - 1; i++){
+	 		if (s.substring(i, i+1).equals("{")){
+	 			openCurly += 1;
+	 		}
+	 		if (s.substring(i, i+1).equals("}")){
+	 			closeCurly += 1;
+	 		}
+		   if (openCurly == closeCurly && openCurly != 0 && closeCurly != 0){
+				forBody = s.substring(s.indexOf("{")+1, i);
+				break;
+			}
+	 		
+	 	}
+	 	System.out.println("BODY: " + forBody);
+	 	System.out.println("");
 	}
-					
-
-	
 }
