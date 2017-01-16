@@ -1,14 +1,9 @@
 import java.util.*;
 public class Flowchart{
-    private String[][] grid;
+    private SuperTwoDArray grid;
     //constructor
     public Flowchart(){
-        grid = new String[60][70];
-        for(int i = 0; i < grid.length; i+=1){
-            for(int j = 0; j < grid[i].length; j+=1){
-                grid[i][j] = " ";
-            }
-        }            
+        grid = new SuperTwoDArray();        
     }
     //
     //static methods
@@ -22,20 +17,16 @@ public class Flowchart{
     }
     
     //
-    //setGridElem
-    public void setCell(int r, int c, String str){
-        grid[r][c] = str;
-    }
     //fills in cells with single character strings of an input string to the left of the input cell
     public void enterStringHorz(int r, int c, String str){
 	for(int i = 0; i < str.length(); i += 1){
-	    setCell(r, c+i, str.substring(i,i+1));
+	    grid.setCell(r, c+i, str.substring(i,i+1));
 	}
     }
     //fills in cells with single character strings of an input string below the input cell
     public void enterStringVert(int r, int c, String str){
         for(int i = 0; i < str.length(); i += 1){
-	    setCell(r+i, c, str.substring(i,i+1));
+	    grid.setCell(r+i, c, str.substring(i,i+1));
 	}
     }
 
@@ -144,7 +135,7 @@ public class Flowchart{
     //method: returnArrow creates an arrow that returns back to the for loop above
     //r,c denotes the start of the return arrow
     public void returnArrow(int r, int c, String bool, String update){
-        setCell(r,c,"-"); //default start of arrow
+        grid.setCell(r,c,"-"); //default start of arrow
         int strech = strechWest(bool,update);
         if(strech > 0){
             enterStringHorz(r,c-strech,repeater("-",strech));
@@ -169,24 +160,13 @@ public class Flowchart{
         insertBody(r+9,17+bool.length()+strechEast(bool,update), body);
         returnArrow(r+9,17+bool.length()+strechEast(bool,update)-3, bool,update);
     }
-    //
-    //printer
-    public void printGrid(){
-        String rowStr;
-        for(int i = 0; i < grid.length; i+=1){
-            rowStr = "";
-            for(int j = 0; j < grid[i].length; j+=1){
-                rowStr += grid[i][j];
-            }
-            System.out.println(rowStr);
-        }
-    }
+    
     //main for now
     public static void main(String args[]){
         Flowchart blarg = new Flowchart();
         blarg.assembleLoop(false, 0,9,"int i = 0", "i<20", "i+= 10000", "sop;\nSOSOPSOSPOSPOSP;\nwe the best;");
         blarg.assembleLoop(true, 13,9,"int j = 0", "j<java.lengt()", "i++", "sop;\nyesJackie;\na Statement that reqs;");
-        blarg.printGrid();
+        blarg.grid.printArray();
         
     }
 }
