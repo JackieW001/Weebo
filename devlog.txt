@@ -3,29 +3,32 @@ Jackie Woo
 Nikita Borisov
 pd 01
 ---------------------
-FlowchartMaker
+Java Flowchart Visualizer
 
 
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*Having a user input the different parts of loops and nested loops
-*Parser is able to detect for loops and print out its parameters if within for brackets
+*Having a user input the different parts of loops and nested loops (for visualization testing purposes)
 *Overcoming possible misallignment errors with the 2D array!!!
+*Parser is able to detect for loops and print out its parameters if within "for" parenthesis
+*New lines and idents no longer an issue with the parser
+
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Creating a nested loop flowchart
 *Creating an effective parser that can detect loops and wont get tripped up
+*Taking out comments
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2D arrays are really fun
+*2D arrays are really fun
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+*Instead of having the parser read line by line, changed parser to convert file into a single string without indents or new line characters. This has proven to be much easier to parse through. 
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,5 +55,10 @@ Nikita :: <Thing member did.>
 2017-01-12
 --------------------------------------------------------------
 Jackie :: Parser is able to print out for loop parameters
+Nikita :: <Thing member did.>
+==============================================================
+2017-01-15
+--------------------------------------------------------------
+Jackie :: Parser takes out new line characters and can now print out the body
 Nikita :: <Thing member did.>
 ==============================================================
