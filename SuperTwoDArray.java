@@ -4,7 +4,8 @@ public class SuperTwoDArray{
     private int _csize;
     private String _defaultFiller;
     
-    //default constructor 
+    //default constructor
+    //creates a 30 by 30 2d array and fills it with " "    
     public SuperTwoDArray(){
         _defaultFiller = " ";
         _data = new String[30][30];
@@ -16,6 +17,7 @@ public class SuperTwoDArray{
             }
         }
     }
+    //sets the value at r,c to value
     public void setCell(int r, int c, String value){
         if(r >= _rsize){
             rexpand();
@@ -25,6 +27,7 @@ public class SuperTwoDArray{
         }
         _data[r][c] = value;
     }
+    //expands the number of rows by 10
     public void rexpand(){
         String[][] tempArr = new String[_rsize+10][_csize];
         //fills array with defaultFIller
@@ -43,7 +46,7 @@ public class SuperTwoDArray{
         _data = tempArr;
         _rsize += 10;
     }
-    
+    //expands the number of columns by 10
     public void cexpand(){
         String[][] tempArr = new String[_rsize][_csize+10];
         //fills array with _defaultFiller
@@ -63,7 +66,7 @@ public class SuperTwoDArray{
         _csize += 10;
     }
     //
-    //printer
+    //prints out the contents of _data row by row
     public void printArray(){
         String rowStr;
         for(int i = 0; i < _rsize; i+=1){
