@@ -5,5 +5,5 @@ APCS1 Final Project
 Creates a flow chart visualization after reading in a .java file
 ## Launch
 In terminal...
-1. Compile Woo.java
-2. Run Woo
+1.. Compile Woo.java
+2.. Run Woo
