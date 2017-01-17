@@ -41,7 +41,7 @@ public class Flowchart{
     //boolRhombus: inserts a boolean expression with two directions for the value of the expression
     //r,c denotes the coordinates of the start of the bool expression
     public void boolRhombus(int r, int c, String bool){
-        enterStringHorz(r,c-9,"-false-< " + bool + " >-true-");
+        enterStringHorz(r,c-9,"-false-{ " + bool + " }-true-");
     }
     //exitArrow: inserts an arrow that exits the flow chart entirely
     //r,c denotes the coordinates of the start of the exit arrow
