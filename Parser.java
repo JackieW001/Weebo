@@ -35,20 +35,23 @@ public class Parser {
 				
 			//Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
+				if (strLine.indexOf("//") > -1){
+					strLine = strLine.substring(0, strLine.indexOf("//"));
+				}
 				text += strLine.trim();
+				
 			}// end while strLine = br.readLine
-			
+			System.out.println(text);
 			//Close the input stream
 			br.close();
 		}
 		catch (IOException e){
 			System.out.println("Fail");
 		}
-		
+		commentDeletor();
 		System.out.println("YOUR JAVA FILE: " + text);
 		System.out.println("");
 		ArrayList<Integer> indicies = indexDetector(text, "for");
-		//System.out.println(indicies.toString());
 		for (int i = 0; i < indicies.size(); i++){
 			loopSeparator(text, indicies.get(i));	
 		}
@@ -69,6 +72,16 @@ public class Parser {
 		}
 		return indexList;
 	}// indexDetector
+	
+	/*
+		commentDeletor(): deletes block comments from text
+	*/
+	public void commentDeletor (){
+		while ( text.indexOf("/*") > -1 ){
+			text = text.substring(0, text.indexOf("/*")) +
+					text.substring(text.indexOf("*/")+2);
+		}
+	}
 	
 	/*
 		loopSeparator (String, int): takes in string version of file and index where loop starts
@@ -99,7 +112,7 @@ public class Parser {
 	 		
 	 	}
 	 	
-		//PARAMS
+	 	//FOR PARAMS
 	 	String init = forParams.substring(1, forParams.indexOf(";"));
 	 	System.out.println("INIT: " + init);
 	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
