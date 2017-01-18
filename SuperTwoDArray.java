@@ -8,9 +8,9 @@ public class SuperTwoDArray{
     //creates a 30 by 30 2d array and fills it with " "    
     public SuperTwoDArray(){
         _defaultFiller = " ";
-        _data = new String[30][30];
-        _rsize = 30;
-        _csize = 30;
+        _data = new String[20][20];
+        _rsize = 20;
+        _csize = 20;
         for(int i = 0; i < _data.length; i+=1){
             for(int j = 0; j < _data[i].length; j+=1){
                 _data[i][j] = _defaultFiller;

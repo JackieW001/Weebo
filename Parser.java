@@ -143,5 +143,10 @@ public class Parser {
 	 	}
 	 	System.out.println("BODY: " + forBody);
 	 	System.out.println("");
+	        Flowchart blarg = new Flowchart();
+		blarg.assembleLoop(true, 0, 9, init, bool, update, forBody);
+		blarg.print();
+
 	}
+
 }

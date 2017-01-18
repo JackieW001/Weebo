@@ -172,13 +172,11 @@ public class Flowchart{
         insertBody(r+9,17+bool.length()+strechEast(bool,update), body);
         returnArrow(r+9,17+bool.length()+strechEast(bool,update)-3, bool,update);
     }
-    
-    //main for now(until Flowchart gets called from Woo.java)
-    public static void main(String args[]){
-        Flowchart blarg = new Flowchart();
-        blarg.assembleLoop(false, 0,9,"int i = 0", "i<20", "i+= 10000", "sop;\nSOSOPSOSPOSPOSP;\nwe the best;");
-        blarg.assembleLoop(true, 13,9,"int j = 0", "j<java.lengt()", "i++", "sop;\nyesJackie;\na Statement that reqs;");
-        blarg.grid.printArray();
-        
+
+    //
+    //print
+    public void print(){
+	grid.printArray();
     }
+ 
 }
