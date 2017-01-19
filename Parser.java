@@ -8,6 +8,7 @@ public class Parser {
 	static String text = "";
 	static int curlyBraceCnt = 0;
 	static int parenCnt = 0;
+        static Flowchart blarg = new Flowchart();
 	
 	public void  parseIt(){
 		System.out.println("\nCurrently, this program will only output \n" +
@@ -17,7 +18,7 @@ public class Parser {
 		System.out.print("File to read in: " );
 		String inputFile = Keyboard.readString();
 		System.out.println("");
-		System.out.println("~~~~~~~~~FINDING FOR LOOPS~~~~~~~~~~~");
+		System.out.println("~~~~~~~~~FOR LOOP VIZUALIZER~~~~~~~~~~~");
 		
 		try{
 			File file = new File (ClassLoader.getSystemResource(inputFile).getFile());
@@ -41,7 +42,7 @@ public class Parser {
 				text += strLine.trim();
 				
 			}// end while strLine = br.readLine
-			System.out.println(text);
+			
 			//Close the input stream
 			br.close();
 		}
@@ -49,12 +50,16 @@ public class Parser {
 			System.out.println("Fail");
 		}
 		commentDeletor();
-		System.out.println("YOUR JAVA FILE: " + text);
+		//System.out.println("YOUR JAVA FILE: " + text);
 		System.out.println("");
 		ArrayList<Integer> indicies = indexDetector(text, "for");
 		for (int i = 0; i < indicies.size(); i++){
-			loopSeparator(text, indicies.get(i));	
+		        // getting FOR LOOP PARAMS
+			String[] forInfo = loopSeparator(text, indicies.get(i));
+			// creating FOR LOOP VISUALIZER
+			blarg.assembleLoop(true, 0, 9, forInfo[0], forInfo[1], forInfo[2], forInfo[3]);	
 		}
+		blarg.print();
 	}// main
 	
 	/*
@@ -87,9 +92,9 @@ public class Parser {
 		loopSeparator (String, int): takes in string version of file and index where loop starts
 		Prints out INITIALIZATION, BOOLEAN, UPDATE, BODY
 	*/
-	public void loopSeparator( String s, int index ){
-	 	s = s.substring(index);
-	 	System.out.println(s);
+	public String[] loopSeparator( String s, int index ){
+	        String[] forStuff = new String[4];
+	        s = s.substring(index);
 	 	int openParen = 0;
 	 	int closeParen = 0;
 	 	String forParams = "";
@@ -114,15 +119,18 @@ public class Parser {
 	 	
 	 	//FOR PARAMS
 	 	String init = forParams.substring(1, forParams.indexOf(";"));
-	 	System.out.println("INIT: " + init);
+	 	//System.out.println("INIT: " + init);
+		forStuff[0] = init;
 	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
 	 	
 	 	String bool = forParams.substring(0, forParams.indexOf(";"));
-	 	System.out.println("BOOLEAN: " + bool);
+	 	//System.out.println("BOOLEAN: " + bool);
+		forStuff[1] = bool;
 	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
 	 	
 	 	String update = forParams.substring(0,forParams.length()-1);
-	 	System.out.println("UPDATE: " + update);
+		forStuff[2] = update;
+	 	//System.out.println("UPDATE: " + update);
 	 	
 	 	//BODY
 	 	int openCurly = 0;
@@ -141,11 +149,12 @@ public class Parser {
 			}
 	 		
 	 	}
-	 	System.out.println("BODY: " + forBody);
-	 	System.out.println("");
-	        Flowchart blarg = new Flowchart();
-		blarg.assembleLoop(true, 0, 9, init, bool, update, forBody);
-		blarg.print();
+		forStuff[3] = forBody;
+	 	//System.out.println("BODY: " + forBody);
+	 	//System.out.println("");
+	        return forStuff;
+	
+
 
 	}
 
