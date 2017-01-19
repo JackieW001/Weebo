@@ -1,6 +1,16 @@
 import java.util.*;
 public class Flowchart{
     private SuperTwoDArray grid;
+    //
+public static final String ANSI_RESET = "\u001B[0m";
+public static final String ANSI_BLACK = "\u001B[30m";
+public static final String ANSI_RED = "\u001B[31m";
+public static final String ANSI_GREEN = "\u001B[32m";
+public static final String ANSI_YELLOW = "\u001B[33m";
+public static final String ANSI_BLUE = "\u001B[34m";
+public static final String ANSI_PURPLE = "\u001B[35m";
+public static final String ANSI_CYAN = "\u001B[36m";
+public static final String ANSI_WHITE = "\u001B[37m";
     //constructor
     public Flowchart(){
         grid = new SuperTwoDArray();        
@@ -24,6 +34,19 @@ public class Flowchart{
 	    grid.setCell(r, c+i, str.substring(i,i+1));
 	}
     }
+    //OVERLOADED enterStringHorz
+    //enterStringHorz: fills in cells with single character strings of an input string to the left of the input cell
+    //possible types: init, bool etc. (for different colors)
+    public void enterStringHorz(String type, int r, int c, String str){
+	String color = "";
+	if(type.equals("init")){ color = ANSI_CYAN;}
+	if(type.equals("bool")){ color = ANSI_PURPLE;}
+	if(type.equals("body")){ color = ANSI_GREEN;}
+	if(type.equals("update")){ color = ANSI_YELLOW;}
+	for(int i = 0; i < str.length(); i += 1){
+	    grid.setCell(r, c+i, color + str.substring(i,i+1) + ANSI_RESET);
+	}
+    }
     //enterStringVert: fills in cells with single character strings of an input string below the input cell
     public void enterStringVert(int r, int c, String str){
         for(int i = 0; i < str.length(); i += 1){
@@ -36,12 +59,14 @@ public class Flowchart{
     //r,c denotes the start of the arrow
     public void initArrow(int r, int c, String init){
         enterStringVert(r,c,"|_|V"); //leaves a cell to insert init
-        enterStringHorz(r+1,c,init);
+        enterStringHorz("init", r+1,c,init);
     }
     //boolRhombus: inserts a boolean expression with two directions for the value of the expression
     //r,c denotes the coordinates of the start of the bool expression
     public void boolRhombus(int r, int c, String bool){
-        enterStringHorz(r,c-9,"-false-{ " + bool + " }-true-");
+        enterStringHorz(r,c-9,"-false-{ " );
+        enterStringHorz("bool", r,c,bool);
+        enterStringHorz(r,c+bool.length()," }-true-");
     }
     //exitArrow: inserts an arrow that exits the flow chart entirely
     //r,c denotes the coordinates of the start of the exit arrow
@@ -52,7 +77,8 @@ public class Flowchart{
     //arrowToNextLoop: inserts an arrow pointing to the next loop(if there is one)
     //r,c denotes the coordinates of the start of the arrow
     //body of the top loop is needed in order to have the arrow pass its size
-    public void arrowToNextLoop(int r, int c, String body){
+    //returns int of row where next loop will start
+    public int arrowToNextLoop(int r, int c, String body){
         //counts how many lines are in the body
         int linesInBody = 1; //starts with a min of one line of code
         for(int i = 0; i < body.length() - 1; i += 1){
@@ -62,6 +88,7 @@ public class Flowchart{
         } 
         enterStringVert(r,c, repeater("|", linesInBody+5));
         enterStringHorz(r+linesInBody+4,c+1, repeater("-", 9));
+	return r+linesInBody+5; //this is where the next loop will start
     }
     //strechEast: figures out how far east the true arrow has to branch out..
     //..in order to not bumb into the update statment
@@ -106,11 +133,11 @@ public class Flowchart{
         String bodyAlias = body;
         for(int i = 0; i < bodyAlias.length() - 1; i += 1){
             if(! (bodyAlias.indexOf("\n") == -1)){
-                enterStringHorz(r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
+                enterStringHorz("body",r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
                 bodyAlias = bodyAlias.substring(bodyAlias.indexOf("\n")+1);           
             }
             else{
-                enterStringHorz(r+i,c,bodyAlias);
+                enterStringHorz("body",r+i,c,bodyAlias);
                 break; //there are no more newlines in code so the loop is done
             }
         }
@@ -151,7 +178,7 @@ public class Flowchart{
         }
         //upwards arrow part
         enterStringVert(r-4,c-strech,"^|_|"); //leaves a spot for update
-        enterStringHorz(r-2,c-strech,update);
+        enterStringHorz("update",r-2,c-strech,update);
         
     } 
     
@@ -159,18 +186,22 @@ public class Flowchart{
     //r,c denotes the start of the init arrow (precond: c>=9) 
     //exit denotes whether or not the loop should have an exit arrow
     //.. or and arrow to the next loop
+    //returns 0 if this loops is the last in the program
+    //returns int of row where next loop will start otherwise
     public void assembleLoop(boolean exit, int r, int c, String init, String bool, String update, String body){
         initArrow(r,c,init);
         boolRhombus(r+4,c,bool);
-        if(exit){
-            exitArrow(r+5,c-9);
-        }
-        else{
-            arrowToNextLoop(r+5,c-9,body);
-        }
         arrowToInnards(r+4,17+bool.length(),bool, update );
         insertBody(r+9,17+bool.length()+strechEast(bool,update), body);
         returnArrow(r+9,17+bool.length()+strechEast(bool,update)-3, bool,update);
+        if(exit){
+            exitArrow(r+5,c-9);
+	    // return 0;
+        }
+        else{
+            //return arrowToNextLoop(r+5,c-9,body);
+        }
+
     }
 
     //
