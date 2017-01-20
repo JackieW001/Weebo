@@ -2,15 +2,6 @@ import java.util.*;
 public class Flowchart{
     private SuperTwoDArray grid;
     //
-public static final String ANSI_RESET = "\u001B[0m";
-public static final String ANSI_BLACK = "\u001B[30m";
-public static final String ANSI_RED = "\u001B[31m";
-public static final String ANSI_GREEN = "\u001B[32m";
-public static final String ANSI_YELLOW = "\u001B[33m";
-public static final String ANSI_BLUE = "\u001B[34m";
-public static final String ANSI_PURPLE = "\u001B[35m";
-public static final String ANSI_CYAN = "\u001B[36m";
-public static final String ANSI_WHITE = "\u001B[37m";
     //constructor
     public Flowchart(){
         grid = new SuperTwoDArray();        
@@ -34,7 +25,7 @@ public static final String ANSI_WHITE = "\u001B[37m";
 	    grid.setCell(r, c+i, str.substring(i,i+1));
 	}
     }
-    //OVERLOADED enterStringHorz
+    /*    //OVERLOADED enterStringHorz
     //enterStringHorz: fills in cells with single character strings of an input string to the left of the input cell
     //possible types: init, bool etc. (for different colors)
     public void enterStringHorz(String type, int r, int c, String str){
@@ -46,7 +37,7 @@ public static final String ANSI_WHITE = "\u001B[37m";
 	for(int i = 0; i < str.length(); i += 1){
 	    grid.setCell(r, c+i, color + str.substring(i,i+1) + ANSI_RESET);
 	}
-    }
+	} */
     //enterStringVert: fills in cells with single character strings of an input string below the input cell
     public void enterStringVert(int r, int c, String str){
         for(int i = 0; i < str.length(); i += 1){
@@ -59,15 +50,13 @@ public static final String ANSI_WHITE = "\u001B[37m";
     //r,c denotes the start of the arrow
     public void initArrow(int r, int c, String init){
         enterStringVert(r,c,"|_|V"); //leaves a cell to insert init
-        enterStringHorz("init", r+1,c,init);
+        enterStringHorz(r+1,c,init);
     }
     //boolRhombus: inserts a boolean expression with two directions for the value of the expression
     //r,c denotes the coordinates of the start of the bool expression
     public void boolRhombus(int r, int c, String bool){
-        enterStringHorz(r,c-9,"-false-{ " );
-        enterStringHorz("bool", r,c,bool);
-        enterStringHorz(r,c+bool.length()," }-true-");
-    }
+        enterStringHorz(r,c-9,"-false-{ " + bool + " }-true-");
+     }
     //exitArrow: inserts an arrow that exits the flow chart entirely
     //r,c denotes the coordinates of the start of the exit arrow
     public void exitArrow(int r, int c){
@@ -133,11 +122,11 @@ public static final String ANSI_WHITE = "\u001B[37m";
         String bodyAlias = body;
         for(int i = 0; i < bodyAlias.length() - 1; i += 1){
             if(! (bodyAlias.indexOf("\n") == -1)){
-                enterStringHorz("body",r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
+                enterStringHorz(r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
                 bodyAlias = bodyAlias.substring(bodyAlias.indexOf("\n")+1);           
             }
             else{
-                enterStringHorz("body",r+i,c,bodyAlias);
+                enterStringHorz(r+i,c,bodyAlias);
                 break; //there are no more newlines in code so the loop is done
             }
         }
@@ -178,7 +167,7 @@ public static final String ANSI_WHITE = "\u001B[37m";
         }
         //upwards arrow part
         enterStringVert(r-4,c-strech,"^|_|"); //leaves a spot for update
-        enterStringHorz("update",r-2,c-strech,update);
+        enterStringHorz(r-2,c-strech,update);
         
     } 
     
@@ -188,20 +177,20 @@ public static final String ANSI_WHITE = "\u001B[37m";
     //.. or and arrow to the next loop
     //returns 0 if this loops is the last in the program
     //returns int of row where next loop will start otherwise
-    public void assembleLoop(boolean exit, int r, int c, String init, String bool, String update, String body){
+    public int assembleLoop(boolean exit, int r, int c, String init, String bool, String update, String body){
+	int retInt = 0;
         initArrow(r,c,init);
         boolRhombus(r+4,c,bool);
+        if(exit){
+            exitArrow(r+5,c-9);
+        }
+        else{
+            retInt = arrowToNextLoop(r+5,c-9,body);
+        }
         arrowToInnards(r+4,17+bool.length(),bool, update );
         insertBody(r+9,17+bool.length()+strechEast(bool,update), body);
         returnArrow(r+9,17+bool.length()+strechEast(bool,update)-3, bool,update);
-        if(exit){
-            exitArrow(r+5,c-9);
-	    // return 0;
-        }
-        else{
-            //return arrowToNextLoop(r+5,c-9,body);
-        }
-
+        return retInt;
     }
 
     //
