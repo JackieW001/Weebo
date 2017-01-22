@@ -1,10 +1,42 @@
 import java.util.*;
 public class Flowchart{
     private SuperTwoDArray grid;
+    private String ANSI_RESET;
+    private String ANSI_BLACK;
+    private String ANSI_RED;
+    private String ANSI_GREEN;
+    private String ANSI_YELLOW;
+    private String ANSI_BLUE;
+    private String ANSI_PURPLE;
+    private String ANSI_CYAN;
+    private String ANSI_WHITE;
     //
     //constructor
-    public Flowchart(){
-        grid = new SuperTwoDArray();        
+    //canColor denotes whether or not the operating system can have colors in the terminal
+    public Flowchart(boolean canColor){
+        grid = new SuperTwoDArray();
+        if(canColor){
+            ANSI_RESET = "\u001B[0m";
+            ANSI_BLACK = "\u001B[30m";
+            ANSI_RED = "\u001B[31m";
+            ANSI_GREEN = "\u001B[32m";
+            ANSI_YELLOW = "\u001B[33m";
+            ANSI_BLUE = "\u001B[34m";
+            ANSI_PURPLE = "\u001B[35m";
+            ANSI_CYAN = "\u001B[36m";
+            ANSI_WHITE = "\u001B[37m";   
+        }
+        else(){
+            ANSI_RESET = "";
+            ANSI_BLACK = "";
+            ANSI_RED = "";
+            ANSI_GREEN = "";
+            ANSI_YELLOW = "";
+            ANSI_BLUE = "";
+            ANSI_PURPLE = "";
+            ANSI_CYAN = "";
+            ANSI_WHITE = ""; 
+        }
     }
     //
     //static methods
@@ -25,7 +57,7 @@ public class Flowchart{
 	    grid.setCell(r, c+i, str.substring(i,i+1));
 	}
     }
-    /*    //OVERLOADED enterStringHorz
+    //OVERLOADED enterStringHorz
     //enterStringHorz: fills in cells with single character strings of an input string to the left of the input cell
     //possible types: init, bool etc. (for different colors)
     public void enterStringHorz(String type, int r, int c, String str){
@@ -37,7 +69,7 @@ public class Flowchart{
 	for(int i = 0; i < str.length(); i += 1){
 	    grid.setCell(r, c+i, color + str.substring(i,i+1) + ANSI_RESET);
 	}
-	} */
+	} 
     //enterStringVert: fills in cells with single character strings of an input string below the input cell
     public void enterStringVert(int r, int c, String str){
         for(int i = 0; i < str.length(); i += 1){
@@ -50,12 +82,15 @@ public class Flowchart{
     //r,c denotes the start of the arrow
     public void initArrow(int r, int c, String init){
         enterStringVert(r,c,"|_|V"); //leaves a cell to insert init
-        enterStringHorz(r+1,c,init);
+        enterStringHorz("init",r+1,c,init);
     }
     //boolRhombus: inserts a boolean expression with two directions for the value of the expression
     //r,c denotes the coordinates of the start of the bool expression
     public void boolRhombus(int r, int c, String bool){
-        enterStringHorz(r,c-9,"-false-{ " + bool + " }-true-");
+        enterStringHorz(r,c-9,"-false-{ ");
+        enterStringHorz("bool",r,c,bool);
+        enterStringHorz(r,c+bool+1," }-true-");
+
      }
     //exitArrow: inserts an arrow that exits the flow chart entirely
     //r,c denotes the coordinates of the start of the exit arrow
@@ -122,11 +157,11 @@ public class Flowchart{
         String bodyAlias = body;
         for(int i = 0; i < bodyAlias.length() - 1; i += 1){
             if(! (bodyAlias.indexOf("\n") == -1)){
-                enterStringHorz(r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
+                enterStringHorz("body",r+i,c,bodyAlias.substring(0,bodyAlias.indexOf("\n")));
                 bodyAlias = bodyAlias.substring(bodyAlias.indexOf("\n")+1);           
             }
             else{
-                enterStringHorz(r+i,c,bodyAlias);
+                enterStringHorz("body",r+i,c,bodyAlias);
                 break; //there are no more newlines in code so the loop is done
             }
         }
@@ -167,7 +202,7 @@ public class Flowchart{
         }
         //upwards arrow part
         enterStringVert(r-4,c-strech,"^|_|"); //leaves a spot for update
-        enterStringHorz(r-2,c-strech,update);
+        enterStringHorz("update",r-2,c-strech,update);
         
     } 
     
