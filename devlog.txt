@@ -14,13 +14,13 @@ OBSTACLES OVERCOME
 *Overcoming possible misallignment errors with the 2D array!!!
 *Parser is able to detect for loops and print out its parameters if within "for" parenthesis
 *New lines and idents no longer an issue with the parser
-
+*Parser can take out comments
+*Parser can account for java keywords being located within a string in the code(the parser can skip over strings)
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Creating a nested loop flowchart
-*Creating an effective parser that can detect loops and wont get tripped up
-*Taking out comments
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
