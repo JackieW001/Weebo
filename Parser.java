@@ -6,8 +6,6 @@ import java.util.*;
 public class Parser {
 
 	private static String text = "";
-	private static int curlyBraceCnt = 0;
-	private static int parenCnt = 0;
     private Flowchart blarg = new Flowchart(canUseAnsi());
     private static String OS = System.getProperty("os.name").toLowerCase();
 	
