@@ -233,5 +233,12 @@ public class Flowchart{
     public void print(){
 	grid.printArray();
     }
+    
+/*     //
+    public static void main(String[] args){
+        Flowchart blarg = new Flowchart(false);
+        blarg.assembleLoop(false,0,9,"init","bool","update", "update\nwoah\nstop");
+        blarg.print();
+    } */
  
 }

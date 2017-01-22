@@ -189,7 +189,12 @@ public class Parser {
 			}
 	 		
 	 	}
-		forStuff[3] = forBody;
+        //checks if there is a newline at the start of forBody and removes it if needed
+        if(forBody.substring(0,1).equals("\n")){
+            forBody = forBody.substring(1);
+        }
+        forStuff[3] = forBody;
+	 	System.out.println("BODY: " + forBody);
 	        return forStuff;
 	
 
