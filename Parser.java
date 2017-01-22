@@ -194,7 +194,6 @@ public class Parser {
             forBody = forBody.substring(1);
         }
         forStuff[3] = forBody;
-	 	System.out.println("BODY: " + forBody);
 	        return forStuff;
 	
 
