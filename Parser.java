@@ -40,7 +40,7 @@ public class Parser {
 				if (strLine.indexOf("//") > -1){
 					strLine = strLine.substring(0, strLine.indexOf("//"));
 				}
-				text += strLine.trim();
+				text += strLine.trim() + "\n";
 				
 			}// end while strLine = br.readLine
 			
