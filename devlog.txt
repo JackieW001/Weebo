@@ -11,20 +11,26 @@ Java Flowchart Visualizer
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Having a user input the different parts of loops and nested loops (for visualization testing purposes)
-*Overcoming possible misallignment errors with the 2D array!!!
+*Overcoming possible misallignment errors with the 2D array
 *Parser is able to detect for loops and print out its parameters if within "for" parenthesis
 *New lines and idents no longer an issue with the parser
-*Parser can take out comments
+*Parser can take out comments (single line and block)
 *Parser can account for java keywords being located within a string in the code(the parser can skip over strings)
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Creating a nested loop flowchart
+*Reading files not in same directory
+*Accommodate for other types of loops (while, for each) and if statements
 
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *2D arrays are really fun
+*Coloring in unix terminals
+*All files are basically .txt files
+*string.indexOf(word, fromIndex)
+*Reading in files
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -32,7 +38,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+*Easier to parse through a file converted into single line string instead of going through it line by line
 ||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -60,5 +66,16 @@ Nikita :: <Thing member did.>
 2017-01-15
 --------------------------------------------------------------
 Jackie :: Parser takes out new line characters and can now print out the body
+Nikita :: <Thing member did.>
+==============================================================
+2017-01-18
+--------------------------------------------------------------
+Jackie :: Parser takes out block and single line comments
+Nikita :: <Thing member did.>
+==============================================================
+2017-01-21
+--------------------------------------------------------------
+Jackie :: Parser skips over "for" keywords in string quotes
+          Added directions to git repo and code
 Nikita :: <Thing member did.>
 ==============================================================
