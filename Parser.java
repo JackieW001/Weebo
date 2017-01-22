@@ -70,12 +70,37 @@ public class Parser {
 	public ArrayList<Integer> indexDetector (String s, String keyword){
 		ArrayList<Integer> indexList = new ArrayList<Integer>();
 		int fromIndex = 0;
-		while (s.indexOf(keyword,fromIndex) > -1){
+		while ((s.indexOf(keyword,fromIndex) > -1) && 
+			   (s.indexOf("\"", fromIndex) > -1)){
+
+			/*
+				This detects the beginning and end of any strings within text
+				Prevents detection of the "for" keyword within Strings
+			*/
+			if (s.indexOf("\"", fromIndex) < s.indexOf(keyword, fromIndex) &&
+				s.indexOf("\"", fromIndex) > -1 ) {
+				for (int i = s.indexOf("\"", fromIndex) + 1; i < s.length() - 2; i++){
+					if ((s.substring(i,i+1)).equals("\"")){
+						fromIndex = i+1;
+						break;
+					}
+				}
+			}
+			
+				
 			int index = s.indexOf(keyword, fromIndex);
-			indexList.add(index);
-			fromIndex = s.indexOf(keyword,fromIndex)+keyword.length();
+			
+			// needed to when "for" keyword is not detected
+			if (index != -1){
+				indexList.add(index);
+			}
+
+			if (s.indexOf(keyword, fromIndex) != -1){
+				fromIndex = s.indexOf(keyword,fromIndex)+keyword.length();
+			}
 		}
 		return indexList;
+		
 	}// indexDetector
 	
 	/*
