@@ -39,6 +39,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Easier to parse through a file converted into single line string instead of going through it line by line
+*Coding modularly is very efficient
 ||||||||||||||||||||||||||||||||||||||||||
 
 
