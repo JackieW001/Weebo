@@ -4,14 +4,20 @@ APCS1 Final Project
 ## Description
 Welcome to the Weebo Java Flow Chart Visualizer
 
-Currently this program will only output the
+This program will visualize the
 for loop parameters of any for loops within
 your .java file. This program doesn't accomodate
-for nested for loops yet.
+for nested for loops yet. However, if you have a nested
+loop, the program will detect it but not visualize it
+correctly.
 
 If you would like to read in a file, copy the file
 into this cloned github repo.
 The file will not be read if it is not within this repo.
+*Please make sure that your .java file does not have
+any syntax errors as the visualizer will not be able
+to run properly with syntax errors.* Run `$ javac filename.java`
+to find any syntax errors your code may have.
 
 If you would like to view a model example of
 the Java Visualizer, type in Moo.java when the
