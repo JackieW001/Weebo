@@ -26,7 +26,7 @@ public class Flowchart{
             ANSI_CYAN = "\u001B[36m";
             ANSI_WHITE = "\u001B[37m";   
         }
-        else(){
+        else{
             ANSI_RESET = "";
             ANSI_BLACK = "";
             ANSI_RED = "";
