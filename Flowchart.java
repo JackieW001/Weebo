@@ -89,7 +89,7 @@ public class Flowchart{
     public void boolRhombus(int r, int c, String bool){
         enterStringHorz(r,c-9,"-false-{ ");
         enterStringHorz("bool",r,c,bool);
-        enterStringHorz(r,c+bool+1," }-true-");
+        enterStringHorz(r,c+bool.length()+1," }-true-");
 
      }
     //exitArrow: inserts an arrow that exits the flow chart entirely
