@@ -6,9 +6,10 @@ import java.util.*;
 public class Parser {
 
 	private static String text = "";
+	private static String textWithNewLine = "";
 	private static int curlyBraceCnt = 0;
 	private static int parenCnt = 0;
-    private static Flowchart blarg = new Flowchart(true);
+    private Flowchart blarg = new Flowchart(canUseAnsi());
     private static String OS = System.getProperty("os.name").toLowerCase();
 	
 	public void  parseIt(){
@@ -40,6 +41,7 @@ public class Parser {
 				if (strLine.indexOf("//") > -1){
 					strLine = strLine.substring(0, strLine.indexOf("//"));
 				}
+				textWithNewLine += strLine + "\n";
 				text += strLine.trim();
 				
 			}// end while strLine = br.readLine
@@ -72,7 +74,14 @@ public class Parser {
 		}
 		blarg.print();
 	}// main
-
+	
+	/*
+		getFile(): returns read file
+	*/
+	public String getFile(){
+		return textWithNewLine;
+	}
+	
 	/*
 		canUseAnsi(): determines whether os can support ANSI encodings
 	*/
