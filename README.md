@@ -1,8 +1,21 @@
 # Weebo
-## Java Flow Chart Visualizer
+## Weebo Java Flow Chart Visualizer
 APCS1 Final Project
 ## Description
-Creates a flow chart visualization after reading in a .java file
+Welcome to the Weebo Java Flow Chart Visualizer
+
+Currently this program will only output the
+for loop parameters of any for loops within
+your .java file. This program doesn't accomodate
+for nested for loops yet.
+
+If you would like to read in a file, copy the file
+into this cloned github repo. The file will not be
+read if it is not within this repo.
+
+If you would like to view a model example of
+the Java Visualizer, type in Moo.java when the
+program prompts you for a file to read in.
 ## Launch
 
 1. Compile Woo.java
