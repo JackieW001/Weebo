@@ -2,8 +2,8 @@ public class Woo {
 
 	public static void main(String[] args){
 	
-		System.out.println("\nWelcome to the Weebo Java Visualizer\n"+
-						   "Currently this program will only output the\nx"+
+		System.out.println("\nWelcome to the Weebo Java Flow Chart Visualizer\n"+
+						   "Currently this program will only output the\n"+
 						   "for loop parameters of any for loops within\n"+
 						   "your .java file. This program doesn't accomodate\n"+
 						   "for nested for loops yet.\n"+
