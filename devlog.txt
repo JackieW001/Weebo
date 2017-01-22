@@ -27,19 +27,24 @@ UNRESOLVED ISSUES
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *2D arrays are really fun
-*Coloring in unix terminals
+*You can use colors in unix terminals!!!!!
 *All files are basically .txt files
-*string.indexOf(word, fromIndex)
+*string.indexOf(word, fromIndex) will start searching for word from fromIndex and not beginning
 *Reading in files
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Instead of having the parser read line by line, changed parser to convert file into a single string without indents or new line characters. This has proven to be much easier to parse through. 
+*We decided to not account for nested loops and instead have multiples single layered loops connect with each other
+*Parser would serve as a better MVP than Flowchart, just in case we didn't have time to connect them together into one MVP
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *Easier to parse through a file converted into single line string instead of going through it line by line
 *Coding modularly is very efficient
+*Spliting up code work and coming back together allows us to efficiently develop our half of the work, while understanding what 
+our partners is doing aswell.
+*It is better to use single char strings in each entry of a 2D array than to have long strings inserted into each entry of 2D array(missalignment issues)
 ||||||||||||||||||||||||||||||||||||||||||
 
 
@@ -57,26 +62,26 @@ LESSONS LEARNED
 2017-01-11
 --------------------------------------------------------------
 Jackie :: Created Parser that read in file line by line and can detect for loops
-Nikita :: <Thing member did.>
+Nikita :: Started developing Flowchart class (instance vars/how it will read in different parts of loop)
 ==============================================================
 2017-01-12
 --------------------------------------------------------------
 Jackie :: Parser is able to print out for loop parameters
-Nikita :: <Thing member did.>
+Nikita :: Created a crude version of Flowchart(missaligned/multi-char strings entered into each slot of array and not single-char strings)
 ==============================================================
 2017-01-15
 --------------------------------------------------------------
 Jackie :: Parser takes out new line characters and can now print out the body
-Nikita :: <Thing member did.>
+Nikita :: Started developing a more rigorous Flowchart(methods that would take a multi-char string and enter it one char at a time into 2D array)
 ==============================================================
 2017-01-18
 --------------------------------------------------------------
 Jackie :: Parser takes out block and single line comments
-Nikita :: <Thing member did.>
+Nikita :: Completed a Flowchart assembler that could make multiple single layer loops connected together/ created SuperTwoDArray incase Flowchart needs more room
 ==============================================================
 2017-01-21
 --------------------------------------------------------------
 Jackie :: Parser skips over "for" keywords in string quotes
           Added directions to git repo and code
-Nikita :: <Thing member did.>
+Nikita :: Added colors and color toggle depending on which OS user is using
 ==============================================================
