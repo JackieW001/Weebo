@@ -12,10 +12,7 @@ public class Parser {
     private static String OS = System.getProperty("os.name").toLowerCase();
 	
 	public void  parseIt(){
-		System.out.println("\nCurrently, this program will only output \n" +
-							"the for loop parameters. Please input a file \n" +
-							"in the same directory as this program.\n" +
-							"\n *** PLEASE ONLY INPUT Moo.java FOR NOW ****");
+
 		System.out.print("File to read in: " );
 		String inputFile = Keyboard.readString();
 		System.out.println("");
