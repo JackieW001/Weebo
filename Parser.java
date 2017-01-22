@@ -5,10 +5,11 @@ import java.util.*;
 
 public class Parser {
 
-	static String text = "";
-	static int curlyBraceCnt = 0;
-	static int parenCnt = 0;
-        static Flowchart blarg = new Flowchart();
+	private static String text = "";
+	private static int curlyBraceCnt = 0;
+	private static int parenCnt = 0;
+    private static Flowchart blarg = new Flowchart(true);
+    private static String OS = System.getProperty("os.name").toLowerCase();
 	
 	public void  parseIt(){
 		System.out.println("\nCurrently, this program will only output \n" +
@@ -49,19 +50,35 @@ public class Parser {
 		catch (IOException e){
 			System.out.println("Fail");
 		}
+		
 		commentDeletor();
-		//System.out.println("YOUR JAVA FILE: " + text);
 		System.out.println("");
+		
 		ArrayList<Integer> indicies = indexDetector(text, "for");
+		int row = 0;
+		boolean isLastLoop;
 		for (int i = 0; i < indicies.size(); i++){
-		        // getting FOR LOOP PARAMS
+		    // getting FOR LOOP PARAMS
 			String[] forInfo = loopSeparator(text, indicies.get(i));
+			if (i != indicies.size()-1){
+				isLastLoop = false;
+			} 
+			else {
+				isLastLoop = true;
+			}
 			// creating FOR LOOP VISUALIZER
-			blarg.assembleLoop(true, 0, 9, forInfo[0], forInfo[1], forInfo[2], forInfo[3]);	
+			row = blarg.assembleLoop(isLastLoop, row, 9, forInfo[0], forInfo[1], forInfo[2], forInfo[3]);	
+			
 		}
 		blarg.print();
 	}// main
-	
+
+	/*
+		canUseAnsi(): determines whether os can support ANSI encodings
+	*/
+	public boolean canUseAnsi(){
+		return (OS.indexOf("mac") >= 0) || (OS.indexOf("nix") >= 0);
+	}
 	/*
 		indexDetector (String, String): takes in string version of file and loop keyword (i.e. "for")
 		Finds all indicies in string where keyword starts
@@ -144,18 +161,15 @@ public class Parser {
 	 	
 	 	//FOR PARAMS
 	 	String init = forParams.substring(1, forParams.indexOf(";"));
-	 	//System.out.println("INIT: " + init);
-		forStuff[0] = init;
+		forStuff[0] = init.trim();
 	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
 	 	
 	 	String bool = forParams.substring(0, forParams.indexOf(";"));
-	 	//System.out.println("BOOLEAN: " + bool);
-		forStuff[1] = bool;
+		forStuff[1] = bool.trim();
 	 	forParams = forParams.substring(forParams.indexOf(";") + 1);
 	 	
 	 	String update = forParams.substring(0,forParams.length()-1);
-		forStuff[2] = update;
-	 	//System.out.println("UPDATE: " + update);
+		forStuff[2] = update.trim();
 	 	
 	 	//BODY
 	 	int openCurly = 0;
